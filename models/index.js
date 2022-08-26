@@ -23,8 +23,11 @@ Post.hasMany(Comment, {
 })
 Comment.belongsTo(Post)
 
+// Comment.hasMany(Comment, 
+//     { as: 'subComment'})
+
 module.exports={
     User,
     Post,
-    Comment
+    Comment,
 }

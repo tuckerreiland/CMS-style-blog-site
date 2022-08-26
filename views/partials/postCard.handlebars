@@ -1,0 +1,35 @@
+
+<div class = "mb-10 mt-5 group">
+    <a href="/post/{{id}}">
+    <h2 class = ' text-white  group-hover:text-sky-400 text-xl font-bold px-5 pt-3 py-2 tracking-wider' data-postId="{{id}}"> {{title}}</h2>
+    </a>
+    <a href="/user/{{User.id}}">
+    <h4 class =  'bg-zinc-900 text-sky-400 group-hover:text-white font-light text-sm italic px-5 pt-2'>written by {{User.username}}</h4>
+    </a>
+    <a href="/post/{{id}}">
+    <p class = 'bg-zinc-900 text-xl font-thin tracking-wider px-5 py-3 leading-8 text-gray-200 group-hover:text-sky-400'>{{post_body}} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam dolorem dolorum esse autem ducimus ex ipsum tempore sunt consequatur repudiandae natus, ab deleniti velit nobis cum minima voluptas earum fuga. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, praesentium vitae. Inventore quaerat, quidem labore quos, blanditiis eius rem officiis culpa, quisquam debitis rerum amet eum nemo. Cupiditate, suscipit aspernatur. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos dignissimos totam nihil, perspiciatis beatae aliquid repellendus ullam enim quisquam quos aliquam voluptatum consequatur sed illo neque, assumenda delectus officiis iste?</p>
+    <div class="">
+        <h4 class = 'bg-zinc-900 text-sky-600 font-light text-sm italic px-5 py-2'>Created {{createdAt}}</h4>
+    </div>
+    </a>
+</div>
+
+<div class="flex justify-between align-middle">
+    <textarea placeholder="comment..." name="" id="new-comment" cols="50" rows="1" class="placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wide caret-sky-400 text-white w-full"></textarea>
+    <div class="flex min-w-fit justify-end">
+    <button id="new-comment" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 mx-2 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Comment ></button>
+    </div>
+</div>
+
+<div class="hidden">
+    <textarea placeholder="comment..." name="" id="create-comment-body" cols="50" class="ml-5 resize-none placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wide caret-sky-400 text-white w-full"></textarea>
+    <button id="create-comment-button" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline hover:outline-1 hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Comment ></button>
+</div>
+
+<div class="ml-5">
+    {{#if Comments}}
+        {{#each Comments}}
+            {{> commentDisplay}}
+        {{/each}}
+    {{/if}}
+</div>

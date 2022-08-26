@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/tailwind.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>blogger</title>
+</head>
+<body>
+    <div class="flex flex-col bg-zinc-900 min-h-screen">
+    <header class="sticky top-0">
+    <div class="min-h-full">
+    <nav class="bg-zinc-900">
+    <div class="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8">
+        <div class="lg:ml-10 md:ml-5 sm:ml-2 flex flex-col">
+            <a href="/" class="align-middle hover:bg-sky-400 hover:text-white text-sky-400 outline outline-1 outline-sky-400 my-5 px-3 py-2 rounded-md text-3xl font-bold" aria-current="page">blogger</a>
+        </div>
+    </div>
+    </nav>
+    </div>
+    </header>
+    <div class="max-w-screen bg-zinc-900">
+    <div class="flex flex-col md:flex md:flex-row justify-start  max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8">
+        <aside class="top-16 sticky w-max md:w-80 px-4 mx-3 ">
+            <div class="md:fixed bg-zinc-900 flex flex-col">
+            <div class="my-5 ml-auto px-3 sm:flex sm:flex-col flex flex-row">
+                <div class="my-5 py-2 grid place-content-start">
+                    {{#if isLoggedIn}}
+                    <div>
+                    <a href="/log-out" data-UserId="{{user.id}}" id="log-out" class=" text-gray-300 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 rounded-md text-sm font-medium">Log Out</a>
+                    </div>
+                    {{else}}
+                    <div>
+                    <a href="/sign-up" class=" text-gray-300 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 mr-2 px-3 py-2 rounded-md text-sm font-medium">Sign Up</a>
+                    <a href="/log-in" class=" text-gray-300 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 rounded-md text-sm font-medium">Log In</a>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="flex items-center">
+                    <a href="/new-post" id="new-post-button" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Post +</a>
+                </div>
+                {{#if isLoggedIn}}
+                <div class="flex items-center my-5 py-2">
+                    <a href="/user/{{user.id}}" id="new-post-button" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Profile ></a>
+                </div>
+                {{/if}}
+            </div>
+            </div>
+        </aside>
+        <main>
+            <div class="flex my-10 min-w-fit">   
+                {{{body}}}
+            </div>
+        </main>
+    </div>
+    </div>
+    <footer></footer>
+    </div>
+</body>
+<script src="../../public/js/logOut.js"></script>
+</html>

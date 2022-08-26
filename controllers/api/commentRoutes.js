@@ -30,11 +30,12 @@ router.get("/:id",(req,res)=>{
 })
 
 //create a new Comment
-router.Comment("/",(req,res)=>{
+router.post("/:PostId",(req,res)=>{
     console.log(req.session)
     Comment.create({
         comment_body:req.body.comment_body,
-        userId:req.session.user.id
+        UserId:req.session.user.id,
+        PostId:req.params.PostId
     }).then(data=>{
         res.json(data)
     }).catch(err=>{
@@ -49,18 +50,19 @@ router.put("/:id",(req,res)=>{
         return res.status(403).json({msg:"Login first to update your Comments!"})
     }
     Comment.findByPk(req.params.id).then(foundComment=>{
+        console.log(foundComment)
         if(!foundComment){
             return res.status(404).json({msg:"no such Comment"})
         }
         if(foundComment.UserId!==req.session.user.id){
             return res.status(403).json({msg:"This account belongs to another Comment."})
         }
-        Comment.update({ 
-            where:{
-                id:req.params.id
-            },
+        Comment.update({
             comment_body:req.body.comment_body,
-            userId:req.session.user.id
+        },{
+            where:{
+                id:foundComment.id
+            },
         }).then(data=>{
             res.json(data)
         }).catch(err=>{
@@ -77,20 +79,17 @@ router.delete("/:id",(req,res)=>{
     if(!req.session.user){
         return res.status(403).json({msg:"login first to delete this Comment account."})
     }
-    Comment.findOne({
-        where:{
-            id:req.params.id
-        }
-    }).then(data=>{
-        console.log(data)
-        console.log(req.session)
-        if(req.session.user.id === data.userId){
+    Comment.findByPk(req.params.id).then(foundComment=>{
+        console.log(foundComment)
+        if(req.session.user.id === foundComment.UserId){
             Comment.destroy({
                 where:{
-                    id:req.params.id
+                    id:foundComment.id
                 }
             })
         }
+    }).then(data =>{
+        res.json({msg:`Comment deleted!`,data})
     }).catch(err=>{
         console.log(err)
         res.status(500).json({msg:"ERROR",err})

@@ -8,17 +8,10 @@ Post.init({
     title: {
         type: DataTypes.STRING,
         allowNull:false,
-   },
+    },
     post_body: {
          type: DataTypes.STRING,
          allowNull:false,
-    },
-    createdAt: {
-        type: DataTypes.INTEGER,
-        allowNull:false,
-        constraints:{
-            len: [2,10],
-        }
     },
 },{
     sequelize
