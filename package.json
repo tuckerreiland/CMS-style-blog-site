@@ -1,5 +1,5 @@
 {
-  "name": "CMS-style-blog-site",
+  "name": "CMS style blog site",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node seeds/seed.js",
     "build": "postcss tailwind.css -o public/css/tailwind.css",
-    "start": "npm run build && nodemon server.js"
+    "start": "npm run build && node server.js"
   },
   "repository": {
     "type": "git",
