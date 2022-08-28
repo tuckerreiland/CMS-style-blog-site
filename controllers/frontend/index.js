@@ -10,10 +10,23 @@ router.get('/', (req, res) => {
             ['createdAt', 'DESC']
           ],
     }).then(foundPosts =>{
-        const hbsData = foundPosts.map(modelIns=>modelIns.toJSON())
+        const posts = foundPosts.map(modelIns=>modelIns.toJSON())
+        // console.log(posts)
+        const hbsData = posts.map( (post) => {
+            if(!req.session.user){
+                post.ownerLoggedIn = false
+                return post
+            } else if (post.UserId !== req.session.user.id){
+                post.ownerLoggedIn = false
+                return post
+            } else {
+                post.ownerLoggedIn = true
+                return post
+            }
+        })
         hbsData.isLoggedIn=req.session.loggedIn
         hbsData.user=req.session.user
-        console.log(req.session)
+        // console.log(req.session)
         console.log(hbsData)
         res.render("home",{
             posts: hbsData,
@@ -43,19 +56,67 @@ router.get('/user/:id', (req, res) => {
     User.findByPk(req.params.id,{
             include:[{
                 model:Post,
-                include:[User],
+                order:[
+                ['createdAt', 'DESC']
+                ],
+                include:[User, 
+                    {model:Comment,
+                    include:User}],
             }]
-    }).then(foundUser =>{
-        const hbsData = foundUser.toJSON()
+    }).then( async (foundUser) =>{
+        const User = foundUser.toJSON()
+        const Posts = await User.Posts.map( (post) => {
+            if (post.UserId!==req.session.user.id){
+                post.ownerLoggedIn = false
+                return post
+            } else {
+                post.ownerLoggedIn = true
+                return post
+            }
+        })
+        User.Posts = Posts 
+        const hbsData = User
         hbsData.isLoggedIn=req.session.loggedIn
         hbsData.user=req.session.user
-        console.log(hbsData)
         res.render("userPage",hbsData)
     })
 })
+
 //update user
+router.get('/profile/:id', (req, res) => {
+    User.findByPk(req.params.id,{
+            include:[{
+                model:Post,
+                order:[
+                ['createdAt', 'DESC']
+                ],
+                include:[User,
+                    {model:Comment,
+                    include:User}],
+            }]
+    }).then(async (foundUser) =>{
+        const User = foundUser.toJSON()
+        const Posts = await User.Posts.map( (post) => {
+            if (post.UserId!==req.session.user.id){
+                post.ownerLoggedIn = false
+                return post
+            } else {
+                post.ownerLoggedIn = true
+                return post
+            }
+        })
+        User.Posts = Posts 
+        const hbsData = User
+        hbsData.isLoggedIn=req.session.loggedIn
+        hbsData.user=req.session.user
+        res.render("updateProfile",hbsData)
+    })
+})
 
 //delete user
+router.get('/account-deleted', (req, res) => {
+    res.render("accountDeleted")
+})
 
 //new post page
 router.get('/new-post', (req, res) => {
@@ -69,15 +130,25 @@ router.get('/new-post', (req, res) => {
 //get one post
 router.get('/post/:id', (req, res) => {
     Post.findByPk(req.params.id,{
-            include:[
-                User,
-                {model:Comment,
-                include:[User]}]
-                
+        include:[
+            User,
+            {model:Comment,
+            include:[User],
+                order:[
+                    ['createdAt', 'DESC']
+                  ]
+            }]
     }).then(foundPost =>{
         const hbsData = foundPost.toJSON()
         hbsData.isLoggedIn=req.session.loggedIn
         hbsData.user=req.session.user
+        const ownerLoggedInCheck = () => {
+            if (hbsData.UserId!=req.session.user.id){
+                return false
+            }
+            return true
+        }
+        hbsData.ownerLoggedIn = ownerLoggedInCheck()
         console.log(hbsData)
         res.render("postPage",hbsData)
     })
@@ -86,6 +157,9 @@ router.get('/post/:id', (req, res) => {
 //udpate post
 
 //delete post
+router.get('/post-deleted', (req, res) => {
+    res.render("postDeleted")
+})
 
 //new comment
 

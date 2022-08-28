@@ -1,10 +1,37 @@
-
+{{#if ownerLoggedIn}}
 <div class = "mb-10 mt-5 group">
-    <a href="/post/{{id}}">
-    <h2 class = ' text-white  group-hover:text-sky-400 text-xl font-bold px-5 pt-3 py-2 tracking-wider' data-postId="{{id}}"> {{title}}</h2>
-    </a>
+    <div class="flex justify-between">
+        <textarea placeholder = "{{title}}" id='post-id' rows="" cols="40" class ='post-id placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white' data-PostId="{{id}}"></textarea>
+        <a href="/post-deleted">
+         <button id="" class='delete-post-button text-red-900 hover:text-red-700  text-xl font-bold px-5 pt-3 py-2 tracking-wider'>×</button>
+        </a>
+    </div>
     <a href="/user/{{User.id}}">
-    <h4 class =  'bg-zinc-900 text-sky-400 group-hover:text-white font-light text-sm italic px-5 pt-2'>written by {{User.username}}</h4>
+    <h4 id='user-id' data-PostId="{{User.id}}" class='user-id bg-zinc-900 text-sky-400 group-hover:text-white font-light text-sm italic px-5 pt-2'>written by {{User.username}}</h4>
+    </a>
+    <textarea placeholder="{{post_body}}" id="" cols="50" class = 'update-post-body placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white'></textarea>
+    <a href="/post/{{id}}">
+    <div class="">
+        <h4 class = 'bg-zinc-900 text-sky-600 font-light text-sm italic px-5 py-2'>Created {{createdAt}}</h4>
+    </div>
+    </a>
+    <div>
+        <button id="" class='update-post-button text-white hover:text-sky-400  text-xl font-bold px-5 pt-3 py-2 tracking-wider'>Update ^</button>
+        <a href="/post/{{id}}">
+            <button id="" class='delete-post-button text-white hover:text-sky-400  text-xl font-bold px-5 pt-3 py-2 tracking-wider'>Post ></button>
+        </a>
+    </div>
+    
+</div>
+{{else}}
+<div class = "mb-10 mt-5 group">
+    <div class="flex justify-between">
+        <a href="/post/{{id}}">
+            <h2 id='' class = 'post-id text-white group-hover:text-sky-400 text-xl font-bold px-5 pt-3 py-2 tracking-wider' data-PostId="{{id}}"> {{title}}</h2>
+        </a>
+    </div>
+    <a href="/user/{{User.id}}">
+    <h4 id='' data-UserId="{{User.id}}" class='user-id bg-zinc-900 text-sky-400 group-hover:text-white font-light text-sm italic px-5 pt-2'>written by {{User.username}}</h4>
     </a>
     <a href="/post/{{id}}">
     <p class = 'bg-zinc-900 text-xl font-thin tracking-wider px-5 py-3 leading-8 text-gray-200 group-hover:text-sky-400'>{{post_body}} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam dolorem dolorum esse autem ducimus ex ipsum tempore sunt consequatur repudiandae natus, ab deleniti velit nobis cum minima voluptas earum fuga. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, praesentium vitae. Inventore quaerat, quidem labore quos, blanditiis eius rem officiis culpa, quisquam debitis rerum amet eum nemo. Cupiditate, suscipit aspernatur. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos dignissimos totam nihil, perspiciatis beatae aliquid repellendus ullam enim quisquam quos aliquam voluptatum consequatur sed illo neque, assumenda delectus officiis iste?</p>
@@ -13,23 +40,24 @@
     </div>
     </a>
 </div>
+{{/if}}
 
 <div class="flex justify-between align-middle">
-    <textarea placeholder="comment..." name="" id="new-comment" cols="50" rows="1" class="placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wide caret-sky-400 text-white w-full"></textarea>
-    <div class="flex min-w-fit justify-end">
-    <button id="new-comment" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 mx-2 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Comment ></button>
+    <textarea placeholder="comment..." name="" id="" cols="50" rows="1" class="create-comment-body placeholder:text-sky-400 placeholder:italic bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wide caret-sky-400 text-white"></textarea>
+    <div class="flex min-w-fit flex-shrink-0 justify-end">
+        <a class="flex align items-start">
+            <button data-PostId="{{id}}" id="" class="create-comment-button max-h-fit text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 mx-2 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Comment ></button>
+        </a>
     </div>
 </div>
 
-<div class="hidden">
-    <textarea placeholder="comment..." name="" id="create-comment-body" cols="50" class="ml-5 resize-none placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wide caret-sky-400 text-white w-full"></textarea>
-    <button id="create-comment-button" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline hover:outline-1 hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Comment ></button>
-</div>
-
-<div class="ml-5">
+<div class="ml-5 border-l border-sky-800 hover:border-l hover:border-sky-400">
     {{#if Comments}}
         {{#each Comments}}
             {{> commentDisplay}}
         {{/each}}
     {{/if}}
 </div>
+
+<script src="../../public/js/postComment.js"></script>
+

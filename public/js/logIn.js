@@ -19,7 +19,7 @@ postBtn.addEventListener("click", e => {
             console.log(res)
             res.json().then(json => {
                 console.log(json.id);
-                    location.href=`user/${json.id}`
+                    location.href=`profile/${json.id}`
             
             })
         }});

@@ -115,10 +115,13 @@ router.put("/:id",(req,res)=>{
         if(foundUser.id !== req.session.user.id){
             return res.status(403).json({msg:"This account belongs to another user."})
         }
+        if(!bcrypt.compareSync(req.body.oldPassword,foundUser.password)){
+            return res.status(403).json({msg:"This account belongs to another user. Password"})
+        }
+        if(!req.body.newPassword) {
         User.update({ 
             username:req.body.username,
             email:req.body.email,
-            password:req.body.password,
         },{
             where:{
                 id:req.params.id
@@ -129,6 +132,22 @@ router.put("/:id",(req,res)=>{
             console.log(err)
             res.status(500).json({msg:"ERROR",err})
         })
+        } else {
+            User.update({ 
+            username:req.body.username,
+            email:req.body.email,
+            password: req.body.newPassword,
+        },{
+            where:{
+                id:req.params.id
+            },
+        }).then(data=>{
+            res.json(data)
+        }).catch(err=>{
+            console.log(err)
+            res.status(500).json({msg:"ERROR",err})
+        })
+        }
     }).catch(err=>{
         res.status(500).json({msg:"ERROR",err})
     })
@@ -153,6 +172,7 @@ router.delete("/:id",(req,res)=>{
             })
         }
     }).then(data =>{
+        req.session.destroy();
         res.json({msg:`Account deleted!`,data})
     }).catch(err=>{
         console.log(err)

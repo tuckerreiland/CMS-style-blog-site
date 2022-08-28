@@ -1,5 +1,4 @@
 const postBtn = document.querySelector("#log-out")
-console.log("LINKED!")
 
 postBtn.addEventListener("click", e => {
     const UserId = e.target.getAttribute("data-UserId");
@@ -15,7 +14,9 @@ postBtn.addEventListener("click", e => {
             console.log(res)
             res.json().then(json => {
             console.log(json.id);
-            location.href=`/`
+            location.reload(true);
+            location.href = ('/')
+            return false;
             })}
     })
 })

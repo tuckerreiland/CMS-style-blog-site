@@ -1,8 +1,10 @@
 console.log("LINKED")
-const newCommentBtn = document.querySelector("#new-comment")
 
-newCommentBtn.addEventListener("click", e => {
-    const newCommentEl = document.querySelector("#new-comment")
-    newCommentEl.toggle("visible");
-
+const updatePageRefresh = document.querySelector("#log-out")
+updatePageRefresh.addEventListener("click", e => {
+    console.log("Timer started")
+    e.preventDefault()
+    setTimeout(()=>{
+        window.location.href('/')
+    },500)
 })

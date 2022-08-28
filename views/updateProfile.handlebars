@@ -1,10 +1,26 @@
+ <div class="flex flex-col max-h-fit">
+ <div class="flex flex-col items-start">
+    <textarea type="text" rows="1" cols="50" data-UserId="{{id}}" placeholder="{{username}}" id="update-user-username" class="placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-3 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white "></textarea>
+    <textarea type="email" rows="1" cols="50" placeholder="{{email}}" id="update-user-email" class="placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-3 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white"></textarea>
+    <input type="password" placeholder="new password... (optional)" id="update-user-password" class="w-full  placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-3 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white"></input>
+    <input type="password" placeholder="enter password to update..." id="confirm-user-password" class="w-full placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-3 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white"></input>
+    <div class="my-5">
+        <button id="update-user-button" class=" text-white bg-zinc-900  hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-sm tracking-wide font-medium">Update ^</button>
+        <button id="delete-user-button" class=" text-white bg-zinc-900  hover:text-red-700 hover:outline-1 hover:outline hover:outline-red-700 ml-2 px-3 py-2 whitespace-nowrap rounded-md text-sm tracking-wide font-medium">Delete ×</button>
+    </div>
+
+</div>
  <div class="flex flex-col items-start min-h-screen">
-    <input type="text" placeholder="{{username}}" id="update-user-username" class="placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-3 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white" />
-    <input type="email" placeholder="{{email}}" id="update-user-email" class="placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-3 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white" />
-    <input type="password" placeholder="password..." id="update-user-password" class="placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-3 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white" />
-    <div>
-        <button id="update-user-password" class=" text-white bg-zinc-900  hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Update Password ></button>
-        <button id="update-user-button" class=" text-white bg-zinc-900  hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Update ></button>
+    <h1 class="bg-zinc-900 px-3 py-2 rounded-md text-xl font-bold tracking-wider text-sky-400">Posts:</h1>
+    <div class="max-w-prose items-center max-h-fit justify-between">
+    {{#each Posts}}
+        {{> postCard}}
+    {{/each}}
     </div>
 </div>
+</div>
+
+</div>
+<script src="/public/js/clickHandlers.js"></script>
 <script src="../public/js/updateUser.js"></script>
+<script src="../public/js/deleteUser.js"></script>

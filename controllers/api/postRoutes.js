@@ -77,7 +77,7 @@ router.put("/:id",(req,res)=>{
 //delete Post
 router.delete("/:id",(req,res)=>{
     if(!req.session.user){
-        return res.status(403).json({msg:"login first to delete this Post account."})
+        return res.status(403).json({msg:"login first to delete this Post."})
     }
     Post.findOne({
         where:{

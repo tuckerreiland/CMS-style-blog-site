@@ -1,7 +1,13 @@
-<div class="max-w-prose items-center justify-between min-h-screen">
+<div class="max-w-screen">
+    <div class="max-w-prose items-center justify-between min-h-screen">
     {{#each posts}}
         <div class="border-l border-sky-800 hover:border-l hover:border-sky-400"> 
             {{> postCard}}
         </div>
     {{/each}}
+    </div>
 </div>
+
+<script src="../../public/js/postComment.js"></script>
+<script src="../../public/js/deletePost.js"></script>
+<script src="../../public/js/updatePost.js"></script>

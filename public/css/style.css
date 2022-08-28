@@ -1,3 +1,8 @@
 textarea {
     resize: none;
 }
+
+.editable:empty:before {
+    content: attr(data-placeholder);
+}
+/* set editable div width 516px */

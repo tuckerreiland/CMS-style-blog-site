@@ -30,7 +30,7 @@
                 <div class="my-5 py-2 grid place-content-start">
                     {{#if isLoggedIn}}
                     <div>
-                    <a href="/log-out" data-UserId="{{user.id}}" id="log-out" class=" text-gray-300 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 rounded-md text-sm font-medium">Log Out</a>
+                    <a href="/log-out" id="log-out" data-UserId="{{user.id}}" class="text-gray-300 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 rounded-md text-sm font-medium">Log Out</a>
                     </div>
                     {{else}}
                     <div>
@@ -40,11 +40,11 @@
                     {{/if}}
                 </div>
                 <div class="flex items-center">
-                    <a href="/new-post" id="new-post-button" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Post +</a>
+                    <a href="/new-post" class="new-post-button text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Post +</a>
                 </div>
                 {{#if isLoggedIn}}
                 <div class="flex items-center my-5 py-2">
-                    <a href="/user/{{user.id}}" id="new-post-button" class=" text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Profile ></a>
+                    <a href="/profile/{{user.id}}" class="new-post-button text-white bg-zinc-900 hover:text-sky-400 hover:outline-1 hover:outline hover:outline-sky-400 px-3 py-2 whitespace-nowrap rounded-md text-xl tracking-wide font-bold">Profile ></a>
                 </div>
                 {{/if}}
             </div>
