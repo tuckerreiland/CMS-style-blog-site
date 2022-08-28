@@ -1,7 +1,7 @@
 {{#if ownerLoggedIn}}
 <div class = "mb-10 mt-5 group">
     <div class="flex justify-between">
-        <textarea placeholder = "{{title}}" id='post-id' rows="" cols="40" class ='post-id placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white' data-PostId="{{id}}"></textarea>
+        <textarea placeholder = "" id='post-id' rows="" cols="40" class ='post-id italic text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 focus:text-white focus:not-italic' data-PostId="{{id}}">{{title}}</textarea>
         <a href="/post-deleted">
          <button id="" class='delete-post-button text-red-900 hover:text-red-700  text-xl font-bold px-5 pt-3 py-2 tracking-wider'>×</button>
         </a>
@@ -9,7 +9,7 @@
     <a href="/user/{{User.id}}">
     <h4 id='user-id' data-PostId="{{User.id}}" class='user-id bg-zinc-900 text-sky-400 group-hover:text-white font-light text-sm italic px-5 pt-2'>written by {{User.username}}</h4>
     </a>
-    <textarea placeholder="{{post_body}}" id="" cols="50" class = 'update-post-body placeholder:italic placeholder:text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 text-white'></textarea>
+    <textarea placeholder="" id="" cols="50" class = 'update-post-body italic text-sky-400 bg-zinc-900 px-5 py-2 rounded-md text-xl font-thin focus:outline-none tracking-wider caret-sky-400 focus:text-white focus:not-italic'>{{post_body}}</textarea>
     <a href="/post/{{id}}">
     <div class="">
         <h4 class = 'bg-zinc-900 text-sky-600 font-light text-sm italic px-5 py-2'>Created {{createdAt}}</h4>
