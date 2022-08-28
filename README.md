@@ -33,7 +33,8 @@ At this time, the post feature for comments is only available on each posts indi
 
 ## Github
 
-* https://github.com/tuckerreiland/social-media-api
+* https://github.com/tuckerreiland/CMS-style-blog-site
+* https://cmsstyleblogsite.herokuapp.com/
 
 ## Deployed Link
 
