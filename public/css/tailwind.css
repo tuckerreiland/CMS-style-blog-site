@@ -562,6 +562,9 @@ video {
 .grid {
   display: grid;
 }
+.hidden {
+  display: none;
+}
 .max-h-fit {
   max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
@@ -575,6 +578,9 @@ video {
 }
 .w-full {
   width: 100%;
+}
+.w-80 {
+  width: 20rem;
 }
 .w-max {
   width: -webkit-max-content;

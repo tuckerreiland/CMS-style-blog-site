@@ -1,7 +1,9 @@
 const postBtn = document.querySelector("#create-user-button")
-console.log("LINKED!")
 
 postBtn.addEventListener("click", e => {
+    if (document.querySelector("#create-user-password").value.length<8 || !document.querySelector("#create-user-password").value){
+        return
+    }else{
     console.log("button")
     e.preventDefault();
     const newUser = {
@@ -39,4 +41,5 @@ postBtn.addEventListener("click", e => {
                     }});
                 })
             }})
+        }
         })
